@@ -1,0 +1,114 @@
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center"
+  class="nav">
+
+  <!-- left box to tollbar start-->
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-icon-button matTooltip="Sidebar" (click)="sidebarMe.toggle()"  matTooltipPosition="left" matTooltipClass="blue-back" matTooltipShowDelay="1000">
+      <mat-icon> menu</mat-icon>
+    </button>
+    <a mat-icon-button matTooltip="Dashboard" routerLink="/dashboard" matTooltipPosition="left" matTooltipClass="blue-back" matTooltipShowDelay="100">
+      <mat-icon> home</mat-icon>
+    </a>
+    <span> UDISE+</span>
+  </div>
+
+  <!-- left box to tollbar center-->
+  <div fxHide.lt-md="true">
+
+    <button mat-Stroked-button (click)="showStatistics=!showStatistics"
+      fxLayout="row" fxLayoutAlign="space-between center" matTooltip="click to expanded / collapse statistics" matTooltipPosition="left" matTooltipShowDelay="1000">
+      <mat-icon> analytics </mat-icon>
+      <span class="ml mr"> Statistics</span>
+      <mat-icon class="rotatable" [ngClass]="{'rotate-180':showStatistics}">
+        keyboard_arrow_down </mat-icon>
+    </button>
+  </div>
+
+  <!-- left box to tollbar end-->
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <button type="button" mat-stroked-button class="mr" fxHide.lt-md="true"
+      [matMenuTriggerFor]="user"> <mat-icon> account_circle</mat-icon> User
+    </button>
+    <button type="button" mat-icon-button [matMenuTriggerFor]="notification">
+      <mat-icon matBadge="2" matBadgeColor="accent"> notifications</mat-icon>
+    </button>
+    <button type="button" mat-icon-button [matMenuTriggerFor]="topmenu">
+      <mat-icon> more_vert</mat-icon> </button>
+  </div>
+
+  <!-- menu satrt -->
+  <mat-menu #topmenu="matMenu">
+    <a routerLink="/dashboard" mat-menu-item> Dashboard</a>
+    <mat-divider></mat-divider>
+    <button mat-menu-item [matMenuTriggerFor]="bookings">Booking </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item [matMenuTriggerFor]="user">User </button>
+  </mat-menu>
+
+  <!-- Submenu for booking -->
+  <mat-menu #bookings="matMenu">
+    <a routerLink="/booking" mat-menu-item> New Booking</a>
+    <mat-divider></mat-divider>
+    <a routerLink="/booking-list" mat-menu-item> Booking List</a>
+  </mat-menu>
+
+  <mat-menu #user="matMenu">
+    <button mat-menu-item> Profile</button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item> Change Password</button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item> Logout</button>
+  </mat-menu>
+
+  <mat-menu #notification="matMenu">
+    <button mat-menu-item>
+      <mat-icon>email</mat-icon>
+      <span> Email From UDISE+</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item>
+      <mat-icon>receipt_long</mat-icon>
+      <span> Send Bills to Customer</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>
+
+<mat-expansion-panel [expanded]="showStatistics">
+  <div class="mt" fxLayout="row" fxLayoutAlign="space-evenly center"
+    fxLayoutGap="20px">
+    <div class="font-weight-bold">
+      Bookings Summary
+    </div>
+    <div matRipple class="p-10 hand-icon">
+      <div> This Week: </div>
+      <div class="font-weight-bold"> 108 Bookings</div>
+    </div>
+    <div matRipple class="p-10 hand-icon">
+      <div> This Month: </div>
+      <div class="font-weight-bold"> 560 Bookings</div>
+    </div>
+    <div matRipple class="p-10 hand-icon">
+      <div> This Years: </div>
+      <div class="font-weight-bold"> 5906 Bookings</div>
+    </div>
+  </div>
+</mat-expansion-panel>
+
+<mat-drawer-container class="drawer-container">
+   <mat-drawer #sidebarMe class="drawer" mode="side" opened="false">
+     <div class="user-logo">
+        <mat-icon class="user-icon">person_outline</mat-icon>
+        <div class="v-align-middle"> User</div>
+     </div>
+     <mat-divider></mat-divider>
+     <mat-nav-list>
+        <a routerLink="/dashboard" routerLinkActive="link-active" mat-list-item > Dashboard</a>
+        <a routerLink="/booking" routerLinkActive="link-active" mat-list-item >New Booking</a>
+        <a routerLink="/booking-list" routerLinkActive="link-active" mat-list-item > Booking List</a>
+     </mat-nav-list>
+   </mat-drawer>
+   <div class="main">
+    <router-outlet></router-outlet>
+   </div>
+  
+</mat-drawer-container>
