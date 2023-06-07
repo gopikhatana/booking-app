@@ -1,1 +1,16 @@
-<p>booking works!</p>
+<div class="page-title" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.gt-md="start
+ start" fxLayout.gt-md="column" fxLayoutGap.gt-md="13px">
+    <div fxFlex="1 1 50%" fxFlex.gt-md="1 1 100%"> New Booking </div>
+    <div fxFlex="1 1 50%" fxFlex.gt-md="1 1 100%" class="text-right">
+      <a routerLink="booking-list"> <mat-icon>arrow_back </mat-icon> Back to Booking</a>
+    </div>
+</div>
+<mat-horizontal-stepper>
+  <mat-step step="Search for a hotel"></mat-step>
+  <mat-step step="Choose a hotel"></mat-step>
+  <mat-step step="Choose a Room"></mat-step>
+  <mat-step step="Personal Information"></mat-step>
+  <mat-step step="Guest Information"></mat-step>
+  <mat-step step="Payment"></mat-step>
+  <mat-step step="Finish"></mat-step>
+</mat-horizontal-stepper>
